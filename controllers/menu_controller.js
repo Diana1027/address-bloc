@@ -7,7 +7,7 @@ module.exports = class MenuController {
         type: 'list',
         name: 'mainMenuChoice',
         message: 'Please choose from an option below: ',
-        choices: ['Add new contact', 'Exit'],
+        choices: ['Add new contact', 'Exit', 'Get date and time'],
       },
     ];
     this.contacts = [];
@@ -24,6 +24,10 @@ module.exports = class MenuController {
             break;
           case 'Exit':
             this.exit();
+            break;
+          case 'Get date and time':
+            this.getDate();
+            break;
           default:
             console.log('Invalid Input');
             this.main();
@@ -41,6 +45,16 @@ module.exports = class MenuController {
   addContact() {
     this.clear();
     console.log('addContact called');
+    this.main();
+  }
+
+  getDate() {
+    this.clear();
+    const today = new Date();
+    const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    const time = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
+    const dateTime = `${date} ${time}`;
+    console.log(dateTime);
     this.main();
   }
 
